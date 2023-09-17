@@ -1,0 +1,41 @@
+#program Of Azure Sppech To Text Web App
+import streamlit as st 
+import azure.cognitiveservices.speech as speechsdk
+import pydub
+from PIL import image
+
+
+def speech_recognize_from_file(sound):
+"""performs speech_to_text transcription with the azure speech SDK"""
+speech_config=speechsdk.speechconfig(subscription="",region="")
+audio_config=speechsdk.audio.audioconfig(filename=sound)
+speech_recognizer=speechsdk.speechrecoginer(speech_config=speech_config,language="en-us",audio_config=audio_config)
+result=speech_recognizer.recognize_once()
+if result.reason==speechsdk.resultreason.recoginizedspeech:
+    st.write("transcribed speech:()",format(result.text))
+elif result ==speechsdk.resultreason_nomatch:
+    st.write("no speech recognized:{}"format (result.no match_details))
+elif result.reason==speechsdk.result reason.canceled:
+    cancelation_details=result.cancelation_details.
+    st.write ("speech recogni   tion cancelled because:{}")
+    format (cancelation_details.reason)
+if cancelation_details.reason==speechsdk cancelation readon.KeyError
+    st.write ("errordetails:{}"format(cancelation_details.error_details))
+    st.titile("azurespeech to text web app")
+    image=image.open(/1.png/)
+    st.image(image)
+    st.write("this is a web app thatusers azure speech sdk to transcribe audio to text ")
+    st.subheader("choose a av file that you want to convert to text ")
+    uploaded_file=str.file_uploader("select a wav file to upload")
+    if upload_file:
+
+        try:
+            audio_bytes+upload_file_read()
+             st.audio(audio_bytes,format="wav())
+                      audio=pydub>audiosegment.format_wav(uplaod_file)
+                      audio.export(1./saved.wav,format='wav')")
+                      speech_recognize_from_file('1./saved.wav')
+except:
+    st.error("please upload a short audio wav file ")
+
+#code ended
